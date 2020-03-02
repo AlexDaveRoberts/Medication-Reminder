@@ -1,1 +1,8 @@
+.card.m-4.p-4
+  %h1 My Reminders
 
+.row.p-4
+  - @reminders.each do |reminder|
+    .col-4
+      .card.p-2.reminder_container
+        = reminder.name
