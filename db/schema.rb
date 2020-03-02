@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_134717) do
   end
 
   create_table "reminders", force: :cascade do |t|
-    t.string "name"
-    t.string "type"
+    t.string "medication_name"
+    t.string "medication_type"
     t.integer "num_of_times"
     t.datetime "start_date"
     t.string "repeat"

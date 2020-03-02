@@ -1,0 +1,34 @@
+%h1
+  New Reminder
+.row
+  = form_with model: @reminder, local: true do |form|
+    .col-12
+      = form.label "Medication Name:"
+      = form.text_field :medication_name
+    .col-12
+      = form.label "Medication Type:"
+      = form.select(:medication_type, ["Drop", "Injection", "Syrup", "Tablet"])
+    .col-12
+      = form.label "Number of times:"
+      = form.radio_button :num_of_times, "1"
+      = form.label :num_of_times, "1"
+      = form.radio_button :num_of_times, "2"
+      = form.label :num_of_times, "2"
+      = form.radio_button :num_of_times, "3"
+      = form.label :num_of_times, "3"
+      = form.radio_button :num_of_times, "4"
+      = form.label :num_of_times, "4"
+    .col-12
+      = form.label "Starting on:"
+      = form.date_select :start_date
+    .col-12
+      = form.label "Repeat:"
+      = form.select(:repeat, ["None", "Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"])
+    .col-12
+      = form.label "Up to:"
+      = form.date_select :repeat_until
+    .col-12
+      = form.label "Notes:"
+      = form.text_area :notes
+    .col-12
+      = form.submit

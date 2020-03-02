@@ -1,8 +1,8 @@
 class CreateReminders < ActiveRecord::Migration[6.0]
   def change
     create_table :reminders do |t|
-      t.string :name
-      t.string :type
+      t.string :medication_name
+      t.string :medication_type
       t.integer :num_of_times
       t.datetime :start_date
       t.string :repeat
