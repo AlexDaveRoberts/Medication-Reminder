@@ -19,3 +19,6 @@ require("channels")
 import "bootstrap";
 import "../stylesheets/application";
 import "@fortawesome/fontawesome-free/js/all";
+
+require('src/gijgo.min.js')
+require('src/reminders.js')

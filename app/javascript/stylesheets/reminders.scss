@@ -1,0 +1,76 @@
+body {
+  background: #E9E9E9;
+}
+
+header {
+  width: 65%;
+  margin: 1rem auto;
+  background: #C1C8E4 !important;
+  h1 {
+    margin: 1.5rem 2.5rem;
+  }
+}
+
+main {
+  width: 65%;
+  margin: 1rem auto;
+  background: #C1C8E4 !important;
+  font-size: 1.25rem;
+  .btn-primary {
+    background: #8860D0 !important;
+    border: 1px solid black;
+    &:active, &:visited {
+      background: #8860D0 !important;
+    }
+    &:hover {
+      background: #51397C !important;
+      border: 1px solid black !important;
+    }
+  }
+  .col-12 {
+    margin: 1rem 1.5rem;
+    input, select, textarea {
+      border: 1px solid black;
+    }
+    .num_of_times {
+      text-align: center;
+      input {
+        display: none;
+      }
+      .btn-primary {
+        margin: 0 0.75rem 0 0;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.35rem !important;
+        &:hover {
+          border: 1px solid white !important;
+        }
+      }
+      .btn.active {
+  	    background: #51397C !important;
+        border-color: white;
+      }
+    }
+    .gj-datepicker {
+      .input-group {
+        width: 100%;
+      }
+      .btn-outline-secondary {
+        background: #8860D0 !important;
+        border: 1px solid black !important;
+        i {
+          color: white;
+        }
+        &:hover {
+          background: #51397C !important;
+        }
+      }
+    }
+    .notes {
+      resize: none;
+      height: 100px;
+    }
+    .submit {
+      font-size: 1.25rem;
+    }
+  }
+}

@@ -23,6 +23,10 @@ class RemindersController < ApplicationController
   end
 
   def reminder_params
-    params.require(:reminder).permit(:medication_name, :medication_type, :num_of_times, :repeat, :notes)
+    params.require(:reminder).permit(
+      :medication_name, :medication_type,
+      :num_of_times, :start_date, :repeat,
+      :repeat_until, :notes
+    )
   end
 end
