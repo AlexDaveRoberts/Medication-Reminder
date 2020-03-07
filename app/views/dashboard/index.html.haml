@@ -1,9 +1,30 @@
-.card.m-4.p-4
+%header.card
   %h1 My Reminders
 
-.row.p-4
-  - @reminders.each do |reminder|
-    .col-4
-      .card.p-2.reminder_container
-        = reminder.medication_name
-        = reminder.medication_type
+%main.card
+  .row.mx-1.mb-3
+    - @reminders.order(created_at: :desc).each do |reminder|
+      .col-4.mt-3
+        .card.reminder_container
+          %span
+            - if reminder.medication_type == "Drop"
+              = image_pack_tag "eye-drops.svg", title: "Eye drops", alt: "Eye drops icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+            - elsif reminder.medication_type == "Injection"
+              = image_pack_tag "injection.svg", title: "Injection", alt: "Injection icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+            - elsif reminder.medication_type == "Syrup"
+              = image_pack_tag "medicine.svg", title: "Syrup", alt: "Syrup icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+            - elsif reminder.medication_type == "Tablet"
+              = image_pack_tag "pill.svg", title: "Tablets", alt: "Tablet icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+            = reminder.medication_name
+          .take_next
+            To take next at 9:00am
+          %hr.my-1
+          .notes
+            = "Notes: #{reminder.notes}"
+          %hr.my-1
+          .repeat
+            = image_pack_tag "clock.svg", title: "Reminder", alt: "Clock icon made by <a href='https://www.flaticon.com/authors/google' title='Google'>Google</a>", class: "reminder_icon"
+            - if reminder.num_of_times == 1 && reminder.repeat == "Every day"
+              Every day at 8pm
+            - elsif reminder.num_of_times == 2
+              Twice a day at 12pm and 5pm

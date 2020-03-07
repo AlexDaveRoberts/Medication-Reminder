@@ -1,3 +1,27 @@
-.reminder_container {
-  background: #957DAD;
+main {
+  .col-4 {
+    display: flex;
+  }
+  .reminder_container {
+    width: 100%;
+    background: #8860D0;
+    padding: 1rem;
+    .card_icon {
+      width: 2.5rem;
+      margin-right: 0.75rem;
+      float: left;
+    }
+    .take_next {
+      margin-left: 3.25rem;
+      margin-top: -0.5rem;
+    }
+    .repeat {
+      margin-top: 0.25em;
+      .reminder_icon {
+        width: 2rem;
+        margin-right: 0.75rem;
+        float: left;
+      }
+    }
+  }
 }
