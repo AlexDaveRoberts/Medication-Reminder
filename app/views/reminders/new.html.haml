@@ -2,42 +2,67 @@
   %h1 Add New Reminder
 
 %main.card
-  .row.form-group
-    = form_with model: @reminder, local: true do |form|
-      .col-12
-        = form.label "Medication Name:"
-        = form.text_field :medication_name, placeholder: "Enter in the name of the medication...", class: "form-control"
-      .col-12
-        = form.label "Medication Type:"
-        = form.select :medication_type, ["Drop", "Injection", "Syrup", "Tablet"], { include_blank: "Select a medication type..." }, class: "form-control"
-      .col-12
-        = form.label "Number of times:"
-        .num_of_times
-          .btn-group{"data-toggle": "buttons"}
-            %label.btn.btn-primary
-              %input#option2{:autocomplete => "off", :name => "reminder[num_of_times]", :type => "radio", value: "1"}/
-              .option 1
-            %label.btn.btn-primary
-              %input#option1{:autocomplete => "off", :name => "reminder[num_of_times]", :type => "radio", value: "2"}/
-              .option 2
-            %label.btn.btn-primary
-              %input#option2{:autocomplete => "off", :name => "reminder[num_of_times]", :type => "radio", value: "3"}/
-              .option 3
-            %label.btn.btn-primary
-              %input#option2{:autocomplete => "off", :name => "reminder[num_of_times]", :type => "radio", value: "4"}/
-              .option 4
+  = form_with model: @reminder, local: true do |form|
+    .row
+      .col-6
+        .row.form-group
+          .col-11
+            = form.label "Medication Name:"
+            = form.text_field :medication_name, placeholder: "Enter in the name of the medication...", class: "form-control", autocomplete: "off"
+          .col-11
+            = form.label "Medication Type:"
+            = form.select :medication_type, ["Drop", "Injection", "Syrup", "Tablet"], { include_blank: "Select a medication type..." }, class: "form-control", autocomplete: "off"
+          .col-11
+            = form.label "Number of times:"
+            .num_of_times
+              .btn-group{"data-toggle": "buttons"}
+                %label.btn.btn-primary
+                  %input{name: "reminder[num_of_times]", type: "radio", value: "1", autocomplete: "off"}
+                  1
+                %label.btn.btn-primary
+                  %input{name: "reminder[num_of_times]", type: "radio", value: "2", autocomplete: "off"}
+                  2
+                %label.btn.btn-primary
+                  %input{name: "reminder[num_of_times]", type: "radio", value: "3", autocomplete: "off"}
+                  3
+                %label.btn.btn-primary
+                  %input{name: "reminder[num_of_times]", type: "radio", value: "4", autocomplete: "off"}
+                  4
 
-      .col-12
-        = form.label "Starting on:"
-        %input{id: "reminder_start_date", name: "reminder[start_date]", placeholder: "Choose a start date...", autocomplete: "off"}
-      .col-12
-        = form.label "Repeat:"
-        = form.select :repeat, ["None", "Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"], { default: "None" }, class: "form-control"
-      .col-12
-        = form.label "Up to:"
-        %input{id: "reminder_repeat_until", name: "reminder[repeat_until]", placeholder: "Choose a date to be reminded until...", autocomplete: "off"}
-      .col-12
-        = form.label "Notes:"
-        = form.text_area :notes, placeholder: "Enter in some brief notes...", class: "form-control notes"
-      .col-12.mb-2
-        = form.submit "Add new reminder", class: "btn btn-primary submit"
+          .col-11
+            = form.label "Starting on:"
+            %input{id: "reminder_start_date", name: "reminder[start_date]", placeholder: "Choose a start date...", autocomplete: "off"}
+          .col-11
+            = form.label "Repeat:"
+            = form.select :repeat, ["None", "Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"], { default: "None" }, class: "form-control", autocomplete: "off"
+          .col-11
+            = form.label "Up to:"
+            %input{id: "reminder_repeat_until", name: "reminder[repeat_until]", placeholder: "Choose a date to be reminded until...", autocomplete: "off"}
+          .col-11
+            = form.label "Notes:"
+            = form.text_area :notes, placeholder: "Enter in some brief notes...", class: "form-control notes", autocomplete: "off"
+          .col-11.mb-2
+            = form.submit "Add new reminder", class: "btn btn-primary submit"
+
+      .col-6
+        .row.mt-3
+          .col-12.text-center
+            Reminders
+        .row
+          .col-12
+            Reminder 1:
+          .col-5
+            Dose:
+            = number_field_tag "individual_reminder[dose1]", nil, min: 1, step: 1, placeholder: "Num of doses...", class: "form-control", autocomplete: "off"
+          .col-5
+            Time:
+            %input{id: "reminder1_time", name: "individual_reminder[time1]", placeholder: "When...", autocomplete: "off"}
+        .row.mt-3
+          .col-12
+            Reminder 2:
+          .col-5
+            Dose:
+            = number_field_tag "individual_reminder[dose2]", nil, min: 1, step: 1, placeholder: "Num of doses...", class: "form-control", autocomplete: "off"
+          .col-5
+            Time:
+            %input{id: "reminder2_time", name: "individual_reminder[time2]", placeholder: "When...", autocomplete: "off"}

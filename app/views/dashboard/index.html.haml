@@ -17,7 +17,8 @@
               = image_pack_tag "pill.svg", title: "Tablets", alt: "Tablet icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
             = reminder.medication_name
           .take_next
-            To take next at 9:00am
+            - if reminder.repeat == "Every day"
+              = "To take next at #{reminder.individual_reminder.everyday_next_reminder}"
           %hr.my-1
           .notes
             = "Notes: #{reminder.notes}"

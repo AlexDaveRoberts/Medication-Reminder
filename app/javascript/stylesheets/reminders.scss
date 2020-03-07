@@ -27,13 +27,27 @@ main {
       border: 1px solid black !important;
     }
   }
-  .col-12 {
-    margin: 1rem 1.5rem;
-    input, select, textarea {
-      border: 1px solid black;
+  .gj-datepicker, .gj-timepicker {
+    .input-group {
+      width: 100%;
     }
+    .btn-outline-secondary {
+      background: #8860D0 !important;
+      border: 1px solid black !important;
+      i {
+        color: white;
+      }
+      &:hover {
+        background: #51397C !important;
+      }
+    }
+  }
+  input, select, textarea {
+    border: 1px solid black !important;
+  }
+  .col-11 {
+    margin: 1rem 1.5rem 0 1.5rem;
     .num_of_times {
-      text-align: center;
       input {
         display: none;
       }
@@ -48,21 +62,6 @@ main {
       .btn.active {
   	    background: #51397C !important;
         border-color: white;
-      }
-    }
-    .gj-datepicker {
-      .input-group {
-        width: 100%;
-      }
-      .btn-outline-secondary {
-        background: #8860D0 !important;
-        border: 1px solid black !important;
-        i {
-          color: white;
-        }
-        &:hover {
-          background: #51397C !important;
-        }
       }
     }
     .notes {

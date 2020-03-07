@@ -8,7 +8,12 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
     if @reminder.save
-      redirect_to @reminder
+      @individual_reminder = @reminder.create_individual_reminder(individual_reminder_params)
+      if @individual_reminder.save
+        redirect_to @reminder
+      else
+        redirect_to new_reminder_path
+      end
     else
       redirect_to new_reminder_path
     end
@@ -27,6 +32,12 @@ class RemindersController < ApplicationController
       :medication_name, :medication_type,
       :num_of_times, :start_date, :repeat,
       :repeat_until, :notes
+    )
+  end
+
+  def individual_reminder_params
+    params.require(:individual_reminder).permit(
+      :dose1, :time1, :dose2, :time2
     )
   end
 end
