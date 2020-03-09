@@ -3,7 +3,7 @@
 
 %main.card
   .row.mx-1.mb-3
-    - @reminders.order(created_at: :desc).each do |reminder|
+    - @reminders.each do |reminder|
       .col-4.mt-3
         .card.reminder_container
           %span
@@ -17,8 +17,13 @@
               = image_pack_tag "pill.svg", title: "Tablets", alt: "Tablet icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
             = reminder.medication_name
           .take_next
-            - if reminder.repeat == "Every day"
-              = "To take next at #{reminder.individual_reminder.everyday_next_reminder}"
+            - if reminder.repeat == "Every day" && reminder.started?
+              - if reminder.individual_reminder.upcoming_reminder_today?
+                = "To take today at #{reminder.individual_reminder.everyday_next_reminder}"
+              - else
+                = "To take tomorrow at #{reminder.individual_reminder.everyday_reminders.first}"
+            - else
+              = "To take next on the #{reminder.start_date.strftime("%d %B")} at #{reminder.individual_reminder.everyday_reminders.first}"
           %hr.my-1
           .notes
             = "Notes: #{reminder.notes}"
