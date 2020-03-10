@@ -35,7 +35,7 @@
           .col-11
             = form.label "Repeat:"
             = form.select :repeat, ["None", "Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"], { default: "None" }, class: "form-control", autocomplete: "off"
-          .col-11
+          .col-11#repeat_up_to
             = form.label "Up to:"
             %input{id: "reminder_repeat_until", name: "reminder[repeat_until]", placeholder: "Choose a date to be reminded until...", autocomplete: "off"}
           .col-11
