@@ -15,12 +15,47 @@ $(document).ready(function() {
   $("#reminder2_time").timepicker({
     uiLibrary: "bootstrap4"
   });
+  $("#reminder3_time").timepicker({
+    uiLibrary: "bootstrap4"
+  });
+  $("#reminder4_time").timepicker({
+    uiLibrary: "bootstrap4"
+  });
 
   $("#reminder_repeat").change(function() {
     if ($("#reminder_repeat").val() == "None") {
-      $("#repeat_up_to").css("display", "none");
+      $("#repeat_up_to").addClass("hidden");
     } else {
-      $("#repeat_up_to").css("display", "block");
+      $("#repeat_up_to").removeClass("hidden");
     }
+  });
+
+  $("#num_of_times1").click(function() {
+    $("#no_reminders").addClass("hidden");
+    $("#reminder1").removeClass("hidden");
+    $("#reminder2").addClass("hidden");
+    $("#reminder3").addClass("hidden");
+    $("#reminder4").addClass("hidden");
+  });
+  $("#num_of_times2").click(function() {
+    $("#no_reminders").addClass("hidden");
+    $("#reminder1").removeClass("hidden");
+    $("#reminder2").removeClass("hidden");
+    $("#reminder3").addClass("hidden");
+    $("#reminder4").addClass("hidden");
+  });
+  $("#num_of_times3").click(function() {
+    $("#no_reminders").addClass("hidden");
+    $("#reminder1").removeClass("hidden");
+    $("#reminder2").removeClass("hidden");
+    $("#reminder3").removeClass("hidden");
+    $("#reminder4").addClass("hidden");
+  });
+  $("#num_of_times4").click(function() {
+    $("#no_reminders").addClass("hidden");
+    $("#reminder1").removeClass("hidden");
+    $("#reminder2").removeClass("hidden");
+    $("#reminder3").removeClass("hidden");
+    $("#reminder4").removeClass("hidden");
   });
 });

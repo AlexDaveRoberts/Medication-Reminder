@@ -45,7 +45,7 @@ main {
   input, select, textarea {
     border: 1px solid black !important;
   }
-  .col-11 {
+  #main_form .col-11 {
     margin: 1rem 1.5rem 0 1.5rem;
     .num_of_times {
       input {
@@ -72,7 +72,29 @@ main {
       font-size: 1.25rem;
     }
   }
-  #repeat_up_to {
+  .hidden {
     display: none;
+  }
+
+  #individual_reminders {
+    div[id^="reminder"] {
+      margin-bottom: 1rem;
+      .col-11 {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      .col-5 {
+        font-size: 1.1rem;
+      }
+    }
+    #heading {
+      font-weight: 500;
+      margin: 1rem 0 0.5rem 0;
+      text-align: center;
+    }
+    #no_reminders {
+      font-size: 1.1rem;
+      text-align: center;
+    }
   }
 }
