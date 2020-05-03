@@ -17,6 +17,7 @@ main {
     }
     .repeat {
       margin-top: 0.25em;
+      flex-grow: 1;
       .reminder_icon {
         width: 2rem;
         margin-right: 0.75rem;

@@ -58,4 +58,15 @@ $(document).ready(function() {
     $("#reminder3").removeClass("hidden");
     $("#reminder4").removeClass("hidden");
   });
+
+  $(".confirm_time").click(function() {
+    $.ajax({
+      method: "POST",
+      url: "/reminders/confirm",
+      data: { individual_id: $(this).attr("data-individual-id"), time_num: $(this).attr("data-time-num") }
+    })
+    .done(function() {
+      location.reload();
+    });
+  });
 });

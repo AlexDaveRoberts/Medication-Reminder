@@ -18,6 +18,14 @@ class RemindersController < ApplicationController
 
   def show; end
 
+  def confirm
+    individual_reminder = IndividualReminder.find(confirm_params[:individual_id])
+    individual_reminder.update(taken1: true, taken_at1: DateTime.now) if confirm_params[:time_num] == "1"
+    individual_reminder.update(taken2: true, taken_at2: DateTime.now) if confirm_params[:time_num] == "2"
+    individual_reminder.update(taken3: true, taken_at3: DateTime.now) if confirm_params[:time_num] == "3"
+    individual_reminder.update(taken4: true, taken_at4: DateTime.now) if confirm_params[:time_num] == "4"
+  end
+
   private
 
   def set_reminder
@@ -36,5 +44,9 @@ class RemindersController < ApplicationController
       :dose1, :time1, :dose2, :time2,
       :dose3, :time3, :dose4, :time4
     )
+  end
+
+  def confirm_params
+    params.permit(:individual_id, :time_num)
   end
 end

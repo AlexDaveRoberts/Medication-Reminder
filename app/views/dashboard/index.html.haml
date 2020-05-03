@@ -43,3 +43,29 @@
                 = "Three times a day at #{reminder.individual_reminder.time1.strftime("%H:%M")}, #{reminder.individual_reminder.time2.strftime("%H:%M")} and #{reminder.individual_reminder.time3.strftime("%H:%M")}"
               - elsif reminder.num_of_times == 4
                 = "Four times a day at #{reminder.individual_reminder.time1.strftime("%H:%M")}, #{reminder.individual_reminder.time2.strftime("%H:%M")}, #{reminder.individual_reminder.time3.strftime("%H:%M")} and #{reminder.individual_reminder.time4.strftime("%H:%M")}"
+          %hr.my-2
+            = button_tag "Confirm medication taken", type: "button", class: "btn btn-secondary", "data-toggle": "modal", "data-target": "#confirm_modal#{reminder.id}", id: "confirm_reminder"
+            .modal.fade{id: "confirm_modal#{reminder.id}", role: "dialog", tabindex: "-1"}
+              .modal-dialog{role: "document"}
+                .modal-content
+                  .modal-header
+                    %h5.modal-title Confirm the time the medication was taken?
+                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body.text-center
+                    - time_available = false
+                    - if reminder.repeat == "Every day"
+                      - if reminder.individual_reminder.time1.present? && (reminder.num_of_times == 1 || 2 || 3 || 4) && reminder.individual_reminder.taken1.nil?
+                        = button_tag "#{reminder.individual_reminder.time1.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 1}
+                        - time_available = true
+                      - if reminder.individual_reminder.time2.present? && (reminder.num_of_times == 2 || 3 || 4) && reminder.individual_reminder.taken2.nil?
+                        = button_tag "#{reminder.individual_reminder.time2.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 2}
+                        - time_available = true
+                      - if reminder.individual_reminder.time3.present? && (reminder.num_of_times == 3 || 4) && reminder.individual_reminder.taken3.nil?
+                        = button_tag "#{reminder.individual_reminder.time3.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 3}
+                        - time_available = true
+                      - if reminder.individual_reminder.time4.present? && (reminder.num_of_times == 4) && reminder.individual_reminder.taken4.nil?
+                        = button_tag "#{reminder.individual_reminder.time4.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 4}
+                        - time_available = true
+                      - if !time_available
+                        All reminders have been confirmed for today.
