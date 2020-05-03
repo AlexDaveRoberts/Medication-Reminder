@@ -2,12 +2,30 @@ body {
   background: #E9E9E9;
 }
 
+.btn-primary {
+  background: #8860D0 !important;
+  border: 1px solid black;
+  &:active, &:visited {
+    background: #8860D0 !important;
+  }
+  &:hover {
+    background: #51397C !important;
+    border: 1px solid black !important;
+  }
+}
+
 header {
   width: 65%;
   margin: 1rem auto;
   background: #C1C8E4 !important;
   h1 {
     margin: 1.5rem 2.5rem;
+  }
+  #new_reminder {
+    text-align: right;
+    a {
+      margin: 1.75rem 1rem 1.75rem 0rem;
+    }
   }
 }
 
@@ -16,17 +34,6 @@ main {
   margin: 1rem auto;
   background: #C1C8E4 !important;
   font-size: 1.2rem;
-  .btn-primary {
-    background: #8860D0 !important;
-    border: 1px solid black;
-    &:active, &:visited {
-      background: #8860D0 !important;
-    }
-    &:hover {
-      background: #51397C !important;
-      border: 1px solid black !important;
-    }
-  }
   .gj-datepicker, .gj-timepicker {
     .input-group {
       width: 100%;

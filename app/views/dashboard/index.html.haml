@@ -1,6 +1,10 @@
 %header.card
-  %h1 My Reminders
-
+  .row
+    .col-9
+      %h1 My Reminders
+    .col-3#new_reminder
+      = link_to "reminders/new", class: "btn btn-primary" do
+        New reminder
 %main.card
   .row.mx-1.mb-3
     - @reminders.each do |reminder|
