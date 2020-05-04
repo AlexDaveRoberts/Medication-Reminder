@@ -24,6 +24,7 @@ class RemindersController < ApplicationController
     individual_reminder.update(taken2: true, taken_at2: DateTime.now) if confirm_params[:time_num] == "2"
     individual_reminder.update(taken3: true, taken_at3: DateTime.now) if confirm_params[:time_num] == "3"
     individual_reminder.update(taken4: true, taken_at4: DateTime.now) if confirm_params[:time_num] == "4"
+    flash[:success] = "This medication reminder has been successfully marked as taken."
   end
 
   private
