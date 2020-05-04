@@ -69,4 +69,50 @@ $(document).ready(function() {
       location.reload();
     });
   });
+
+  setInterval(function() {
+    var currentdate = new Date();
+    var datetime = currentdate.getHours() + ":" + currentdate.getMinutes();
+    var reminder_info = document.getElementsByClassName("reminder_info");
+    for (var i = 0; i < reminder_info.length; i++) {
+      var reminder_times = JSON.parse(reminder_info[i].getAttribute("data-times"));
+      var reminder_title = reminder_info[i].getAttribute("data-medication-name");
+      var reminder_type = reminder_info[i].getAttribute("data-medication-type");
+      var individual_id = reminder_info[i].getAttribute("data-individual-id");
+      for (var n = 0; n < reminder_times.length; n++) {
+        if (reminder_times[n] == datetime) {
+          if (reminder_type == "Drop") {
+            document.getElementById("reminder_eye_drops").classList.remove("hidden");
+          } else if (reminder_type == "Injection") {
+            document.getElementById("reminder_injection").classList.remove("hidden");
+          } else if (reminder_type == "Syrup") {
+            document.getElementById("reminder_syrup").classList.remove("hidden");
+          } else if (reminder_type == "Tablet") {
+            document.getElementById("reminder_tablets").classList.remove("hidden");
+          }
+          document.getElementById("reminder_title").innerHTML = reminder_title + " Reminder";
+          document.getElementById("reminder_content").innerHTML = `It is ${datetime}, this is your reminder to take ${reminder_title}.`;
+          $('#reminder_modal').modal('show');
+          document.getElementById("reminder_taken").innerHTML = `<i class='fas fa-check'></i> I have taken ${reminder_title}`;
+          $('#reminder_modal').modal('show');
+          document.getElementById("reminder_taken").dataset.individual_id = individual_id;
+
+          $("#reminder_taken").click(function() {
+            $.ajax({
+              method: "POST",
+              url: "/reminders/confirm",
+              data: { individual_id: $(this).attr("data-individual_id"), time_num: n}
+            })
+            .done(function() {
+              location.reload();
+            });
+          });
+        }
+      }
+    }
+  }, 60000);
+
+  $('#reminder_modal').on('hidden.bs.modal', function () {
+    location.reload();
+  });
 });

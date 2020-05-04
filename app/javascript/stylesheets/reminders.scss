@@ -117,3 +117,34 @@ main {
     }
   }
 }
+
+#reminder_modal {
+  .modal-dialog {
+    max-width: 1000px !important;
+  }
+  .model-body {
+    position: relative;
+  }
+}
+#reminder_eye_drops, #reminder_injection, #reminder_syrup, #reminder_tablets {
+  position: absolute;
+  width: 5rem;
+  margin: 2rem 0 0 1rem;
+}
+#reminder_title {
+  font-size: 5rem;
+  padding-top: 2rem;
+  margin: 0rem 6rem;
+}
+#reminder_content {
+  font-size: 3rem;
+  padding: 5rem;
+  margin: 0rem 6rem;
+}
+#reminder_taken {
+  font-size: 2rem;
+  margin: 0rem 5rem 2rem 5rem;
+}
+.hidden {
+  display: none;
+}

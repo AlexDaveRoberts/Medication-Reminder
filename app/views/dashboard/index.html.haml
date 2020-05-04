@@ -1,3 +1,4 @@
+= render partial: "reminder"
 %header.card
   .row
     .col-9
@@ -8,6 +9,7 @@
 %main.card
   .row.mx-1.mb-3
     - @reminders.each do |reminder|
+      = hidden_field_tag "reminder_info", nil, class: "reminder_info", data: {medication_name: reminder.medication_name, medication_type: reminder.medication_type, times: reminder.individual_reminder.everyday_reminders, individual_id: reminder.individual_reminder.id}
       .col-4.mt-3
         .card.reminder_container
           %span

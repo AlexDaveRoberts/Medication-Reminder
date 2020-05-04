@@ -1,0 +1,16 @@
+.modal.fade{id: "reminder_modal", role: "dialog", tabindex: "-1"}
+  .modal-dialog{role: "document"}
+    .modal-content
+      .modal-body.text-center
+        #reminder_eye_drops.hidden
+          = image_pack_tag "eye-drops.svg", title: "Eye drops", alt: "Eye drops icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>"
+        #reminder_injection.hidden
+          = image_pack_tag "injection.svg", title: "Injection", alt: "Injection icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>"
+        #reminder_syrup.hidden
+          = image_pack_tag "medicine.svg", title: "Syrup", alt: "Syrup icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>"
+        #reminder_tablets.hidden
+          = image_pack_tag "pill.svg", title: "Tablets", alt: "Tablet icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>"
+
+        #reminder_title placeholder title
+        #reminder_content placeholder content
+        = button_tag "placeholder confirm", type: "button", class: "btn btn-success", id: "reminder_taken"
