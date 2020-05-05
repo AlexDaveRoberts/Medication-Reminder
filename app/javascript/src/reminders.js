@@ -72,7 +72,7 @@ $(document).ready(function() {
 
   setInterval(function() {
     var currentdate = new Date();
-    var datetime = currentdate.getHours() + ":" + currentdate.getMinutes();
+    var datetime = String(currentdate.getHours()).padStart(2, "0") + ":" + String(currentdate.getMinutes()).padStart(2, "0");
     var reminder_info = document.getElementsByClassName("reminder_info");
     for (var i = 0; i < reminder_info.length; i++) {
       var reminder_times = JSON.parse(reminder_info[i].getAttribute("data-times"));
@@ -81,6 +81,7 @@ $(document).ready(function() {
       var individual_id = reminder_info[i].getAttribute("data-individual-id");
       for (var n = 0; n < reminder_times.length; n++) {
         if (reminder_times[n] == datetime) {
+          var current_time_num = reminder_times.indexOf(datetime) + 1;
           if (reminder_type == "Drop") {
             document.getElementById("reminder_eye_drops").classList.remove("hidden");
           } else if (reminder_type == "Injection") {
@@ -101,7 +102,7 @@ $(document).ready(function() {
             $.ajax({
               method: "POST",
               url: "/reminders/confirm",
-              data: { individual_id: $(this).attr("data-individual_id"), time_num: n}
+              data: { individual_id: $(this).attr("data-individual_id"), time_num: current_time_num}
             })
             .done(function() {
               location.reload();

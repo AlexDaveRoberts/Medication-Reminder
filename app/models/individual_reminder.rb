@@ -15,7 +15,7 @@ class IndividualReminder < ApplicationRecord
     end
   end
 
-  def everyday_reminders
+  def everyday_reminders(sort = false)
     times = []
     attributes.each do |attr_name, attr_value|
       if attr_name.include?("time")
@@ -24,7 +24,11 @@ class IndividualReminder < ApplicationRecord
         end
       end
     end
-    times.sort
+    if sort == true
+      return times.sort
+    else
+      return times
+    end
   end
 
   def upcoming_reminder_today?

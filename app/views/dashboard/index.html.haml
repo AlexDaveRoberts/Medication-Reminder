@@ -27,9 +27,9 @@
               - if reminder.individual_reminder.upcoming_reminder_today?
                 = "To take next: Today at #{reminder.individual_reminder.everyday_next_reminder}"
               - else
-                = "To take next: Tomorrow at #{reminder.individual_reminder.everyday_reminders.first}"
+                = "To take next: Tomorrow at #{reminder.individual_reminder.everyday_reminders(sort = true).first}"
             - else
-              = "To begin taking: #{reminder.start_date.strftime("%d %B")} at #{reminder.individual_reminder.everyday_reminders.first}"
+              = "To begin taking: #{reminder.start_date.strftime("%d %B")} at #{reminder.individual_reminder.everyday_reminders(sort = true).first}"
           %hr.my-1
           .notes
             = "Notes: #{reminder.notes}"
@@ -38,13 +38,13 @@
             = image_pack_tag "clock.svg", title: "Reminder", alt: "Clock icon made by <a href='https://www.flaticon.com/authors/google' title='Google'>Google</a>", class: "reminder_icon"
             - if reminder.repeat == "Every day"
               - if reminder.num_of_times == 1
-                = "Every day at #{reminder.individual_reminder.time1.strftime("%H:%M")}"
+                = "Every day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}"
               - elsif reminder.num_of_times == 2
-                = "Twice a day at #{reminder.individual_reminder.time1.strftime("%H:%M")} and #{reminder.individual_reminder.time2.strftime("%H:%M")}"
+                = "Twice a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}"
               - elsif reminder.num_of_times == 3
-                = "Three times a day at #{reminder.individual_reminder.time1.strftime("%H:%M")}, #{reminder.individual_reminder.time2.strftime("%H:%M")} and #{reminder.individual_reminder.time3.strftime("%H:%M")}"
+                = "Three times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[2]}"
               - elsif reminder.num_of_times == 4
-                = "Four times a day at #{reminder.individual_reminder.time1.strftime("%H:%M")}, #{reminder.individual_reminder.time2.strftime("%H:%M")}, #{reminder.individual_reminder.time3.strftime("%H:%M")} and #{reminder.individual_reminder.time4.strftime("%H:%M")}"
+                = "Four times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[2]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[3]}"
           %hr.my-2
             = button_tag "Confirm medication taken", type: "button", class: "btn btn-secondary", "data-toggle": "modal", "data-target": "#confirm_modal#{reminder.id}", id: "confirm_reminder"
             .modal.fade{id: "confirm_modal#{reminder.id}", role: "dialog", tabindex: "-1"}

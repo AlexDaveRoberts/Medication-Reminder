@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_134717) do
+ActiveRecord::Schema.define(version: 2020_05_04_214907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,22 +19,18 @@ ActiveRecord::Schema.define(version: 2020_03_02_134717) do
     t.integer "reminder_id"
     t.string "dose1"
     t.datetime "time1"
-    t.boolean "taken1"
-    t.datetime "taken_at1"
     t.string "dose2"
     t.datetime "time2"
-    t.boolean "taken2"
-    t.datetime "taken_at2"
     t.string "dose3"
     t.datetime "time3"
-    t.boolean "taken3"
-    t.datetime "taken_at3"
     t.string "dose4"
     t.datetime "time4"
-    t.boolean "taken4"
-    t.datetime "taken_at4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.json "taken1"
+    t.json "taken2"
+    t.json "taken3"
+    t.json "taken4"
   end
 
   create_table "reminders", force: :cascade do |t|

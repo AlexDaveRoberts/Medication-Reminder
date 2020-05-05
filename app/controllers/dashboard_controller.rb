@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
       end
     end
     daily_reminders = Reminder.find(daily_reminder_index).sort do |a, b|
-      a.individual_reminder.everyday_reminders.first <=> b.individual_reminder.everyday_reminders.first
+      a.individual_reminder.everyday_reminders(sort = true).first <=> b.individual_reminder.everyday_reminders(sort = true).first
     end
     new_reminder_order << daily_reminders.pluck(:id)
     new_reminder_order = new_reminder_order.flatten
