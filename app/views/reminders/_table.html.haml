@@ -3,54 +3,56 @@
     - date = DateTime.parse(value).strftime("%d %B %Y")
     - filter_array = new_array.select{|key| key[:date] == date}
     - all_dates << date if !all_dates.include?(date)
-    .row
+    .row.my-3
       .col-4
         = DateTime.parse(value).strftime("%d %B %Y")
       .col-2
         - taken1_value = filter_array.select{|key| key[:taken_val] == "taken1"}
         - if taken1_value.present?
+          %i.fas.fa-check-circle.green
           = taken1_value[0][:time]
-          %i.fas.fa-check-circle
         - elsif reminder.individual_reminder.time1.present?
           - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time1.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            %i.far.fa-circle.grey
             Upcoming
-            %i.far.fa-circle
           - else
+            %i.fas.fa-times-circle.red
             Missed
-            %i.fas.fa-times-circle
       .col-2
         - taken2_value = filter_array.select{|key| key[:taken_val] == "taken2"}
         - if taken2_value.present?
+          %i.fas.fa-check-circle.green
           = taken2_value[0][:time]
-          %i.fas.fa-check-circle
         - elsif reminder.individual_reminder.time2.present?
           - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time2.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            %i.far.fa-circle.grey
             Upcoming
-            %i.far.fa-circle
           - else
+            %i.fas.fa-times-circle.red
             Missed
-            %i.fas.fa-times-circle
       .col-2
         - taken3_value = filter_array.select{|key| key[:taken_val] == "taken3"}
         - if taken3_value.present?
+          %i.fas.fa-check-circle.green
           = taken3_value[0][:time]
-          %i.fas.fa-check-circle
         - elsif reminder.individual_reminder.time3.present?
           - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time3.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            %i.far.fa-circle.grey
             Upcoming
-            %i.far.fa-circle
           - else
+            %i.fas.fa-times-circle.red
             Missed
-            %i.fas.fa-times-circle
       .col-2
         - taken4_value = filter_array.select{|key| key[:taken_val] == "taken4"}
         - if taken4_value.present?
+          %i.fas.fa-check-circle.green
           = taken4_value[0][:time]
-          %i.fas.fa-check-circle
         - elsif reminder.individual_reminder.time4.present?
           - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time4.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            %i.far.fa-circle.grey
             Upcoming
-            %i.far.fa-circle
           - else
+            %i.fas.fa-times-circle.red
             Missed
-            %i.fas.fa-times-circle
+
+    %hr

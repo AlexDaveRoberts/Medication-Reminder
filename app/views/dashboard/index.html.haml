@@ -20,7 +20,9 @@
           .notes
             = "Notes: #{reminder.notes}"
           %hr.my-1
-            = render partial: "repeat", locals: { reminder: reminder }
+            .repeat
+              = image_pack_tag "clock.svg", title: "Reminder", alt: "Clock icon made by <a href='https://www.flaticon.com/authors/google' title='Google'>Google</a>", class: "reminder_icon"
+              = render partial: "repeat", locals: { reminder: reminder }
           %hr.my-2
             = button_tag "Confirm medication taken", type: "button", class: "btn btn-secondary", "data-toggle": "modal", "data-target": "#confirm_modal#{reminder.id}", id: "confirm_reminder"
             .modal.fade{id: "confirm_modal#{reminder.id}", role: "dialog", tabindex: "-1"}

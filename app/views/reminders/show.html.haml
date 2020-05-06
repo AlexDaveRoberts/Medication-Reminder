@@ -1,37 +1,54 @@
 .row#reminder_details
   .col-12
-    %main.card
+    %main.card.p-4
       .row
         .col-6
           = render partial: "dashboard/medication_type", locals: { reminder: @reminder }
-          %h1
+          %h2
             = @reminder.medication_name
-          = "Type: #{@reminder.medication_type}"
-          = render partial: "dashboard/take_next", locals: { reminder: @reminder }
-          Repeat:
-          = render partial: "dashboard/repeat", locals: { reminder: @reminder }
-          Started on:
-          = @reminder.start_date.strftime("%d/%m/%Y")
-          = "Notes: #{@reminder.notes}"
+          .row.my-3
+            .col-12
+              = "Type: #{@reminder.medication_type}"
+          .row.my-3
+            .col-12
+              = render partial: "dashboard/take_next", locals: { reminder: @reminder }
+          .row.my-3
+            .col-12
+              Repeat:
+              = render partial: "dashboard/repeat", locals: { reminder: @reminder }
+          .row.my-3
+            .col-12
+              Started on:
+              = @reminder.start_date.strftime("%d %B %Y")
+          .row.my-3
+            .col-12
+              = "Notes: #{@reminder.notes}"
         .col-6
-          Reminders
-          %h6
-            - if @reminder.individual_reminder.dose1.present?
-              = "#{pluralize(@reminder.individual_reminder.dose1.to_i, 'dose')} at #{@reminder.individual_reminder.time1.strftime("%H:%M")}"
-          %h6
-            - if @reminder.individual_reminder.dose2.present?
-              = "#{pluralize(@reminder.individual_reminder.dose2.to_i, 'dose')} at #{@reminder.individual_reminder.time2.strftime("%H:%M")}"
-          %h6
-            - if @reminder.individual_reminder.dose3.present?
-              = "#{pluralize(@reminder.individual_reminder.dose3.to_i, 'dose')} at #{@reminder.individual_reminder.time3.strftime("%H:%M")}"
-          %h6
-            - if @reminder.individual_reminder.dose4.present?
-              = "#{pluralize(@reminder.individual_reminder.dose4.to_i, 'dose')} at #{@reminder.individual_reminder.time4.strftime("%H:%M")}"
-
-      .row
-        .col-12
-          %h2 Medication Reminder History
           .row
+            .col-12
+              %h4
+                Reminders
+          .row.my-3
+            .col-12
+              - if @reminder.individual_reminder.dose1.present?
+                = "#{pluralize(@reminder.individual_reminder.dose1.to_i, 'dose')} at #{@reminder.individual_reminder.time1.strftime("%H:%M")}"
+          .row.my-3
+            .col-12
+              - if @reminder.individual_reminder.dose2.present?
+                = "#{pluralize(@reminder.individual_reminder.dose2.to_i, 'dose')} at #{@reminder.individual_reminder.time2.strftime("%H:%M")}"
+          .row.my-3
+            .col-12
+              - if @reminder.individual_reminder.dose3.present?
+                = "#{pluralize(@reminder.individual_reminder.dose3.to_i, 'dose')} at #{@reminder.individual_reminder.time3.strftime("%H:%M")}"
+          .row.my-3
+            .col-12
+              - if @reminder.individual_reminder.dose4.present?
+                = "#{pluralize(@reminder.individual_reminder.dose4.to_i, 'dose')} at #{@reminder.individual_reminder.time4.strftime("%H:%M")}"
+
+      .row.mt-4
+        .col-12
+          %h2.pb-3 Medication Reminder History
+          %strong.row.my-3
             .col-4
               Dates
             .col-2
@@ -42,6 +59,7 @@
               = @reminder.individual_reminder.time3.strftime("%H:%M") if @reminder.individual_reminder.time3.present?
             .col-2
               = @reminder.individual_reminder.time4.strftime("%H:%M") if @reminder.individual_reminder.time4.present?
+          %hr
           - taken1 = @reminder.individual_reminder.taken1
           - taken2 = @reminder.individual_reminder.taken2
           - taken3 = @reminder.individual_reminder.taken3

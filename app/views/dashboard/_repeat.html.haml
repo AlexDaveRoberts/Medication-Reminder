@@ -1,11 +1,9 @@
-.repeat
-  = image_pack_tag "clock.svg", title: "Reminder", alt: "Clock icon made by <a href='https://www.flaticon.com/authors/google' title='Google'>Google</a>", class: "reminder_icon"
-  - if reminder.repeat == "Every day"
-    - if reminder.num_of_times == 1
-      = "Every day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}"
-    - elsif reminder.num_of_times == 2
-      = "Twice a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}"
-    - elsif reminder.num_of_times == 3
-      = "Three times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[2]}"
-    - elsif reminder.num_of_times == 4
-      = "Four times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[2]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[3]}"
+- if reminder.repeat == "Every day"
+  - if reminder.num_of_times == 1
+    = "Every day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}"
+  - elsif reminder.num_of_times == 2
+    = "Twice a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}"
+  - elsif reminder.num_of_times == 3
+    = "Three times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[2]}"
+  - elsif reminder.num_of_times == 4
+    = "Four times a day at #{reminder.individual_reminder.everyday_reminders(sort = true)[0]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[1]}, #{reminder.individual_reminder.everyday_reminders(sort = true)[2]} and #{reminder.individual_reminder.everyday_reminders(sort = true)[3]}"

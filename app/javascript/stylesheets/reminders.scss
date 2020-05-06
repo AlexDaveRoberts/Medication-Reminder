@@ -155,8 +155,20 @@ main {
 }
 
 #reminder_details {
-  .card_icon, .reminder_icon {
+  .card_icon {
     width: 5rem;
-    margin-right: 0.75rem;
+    margin: 0 0.75rem 1.25rem 0;
+  }
+  h2 {
+    display: inline-block;
+  }
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+  .grey {
+    color: grey;
   }
 }
