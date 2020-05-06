@@ -30,34 +30,42 @@ $(document).ready(function() {
     }
   });
 
-  $("#num_of_times1").click(function() {
+  function num_of_times1() {
     $("#no_reminders").addClass("hidden");
     $("#reminder1").removeClass("hidden");
     $("#reminder2").addClass("hidden");
     $("#reminder3").addClass("hidden");
     $("#reminder4").addClass("hidden");
-  });
-  $("#num_of_times2").click(function() {
+  }
+
+  function num_of_times2() {
     $("#no_reminders").addClass("hidden");
     $("#reminder1").removeClass("hidden");
     $("#reminder2").removeClass("hidden");
     $("#reminder3").addClass("hidden");
     $("#reminder4").addClass("hidden");
-  });
-  $("#num_of_times3").click(function() {
+  }
+
+  function num_of_times3() {
     $("#no_reminders").addClass("hidden");
     $("#reminder1").removeClass("hidden");
     $("#reminder2").removeClass("hidden");
     $("#reminder3").removeClass("hidden");
     $("#reminder4").addClass("hidden");
-  });
-  $("#num_of_times4").click(function() {
+  }
+
+  function num_of_times4() {
     $("#no_reminders").addClass("hidden");
     $("#reminder1").removeClass("hidden");
     $("#reminder2").removeClass("hidden");
     $("#reminder3").removeClass("hidden");
     $("#reminder4").removeClass("hidden");
-  });
+  }
+
+  $("#num_of_times1").click(num_of_times1);
+  $("#num_of_times2").click(num_of_times2);
+  $("#num_of_times3").click(num_of_times3);
+  $("#num_of_times4").click(num_of_times4);
 
   $(".confirm_time").click(function() {
     $.ajax({
@@ -116,4 +124,20 @@ $(document).ready(function() {
   $('#reminder_modal').on('hidden.bs.modal', function () {
     location.reload();
   });
+
+  if (document.getElementById("main_form")) {
+    var num_of_times = document.getElementById("main_form").getAttribute("data-num-of-times");
+    if (num_of_times == "1") {
+      $("#num_of_times1").click();
+    } else if (num_of_times == "2") {
+      $("#num_of_times2").click();
+    } else if (num_of_times == "3") {
+      $("#num_of_times3").click();
+    } else if (num_of_times == "4") {
+      $("#num_of_times4").click();
+    }
+    if ($("#reminder_repeat_until").val() != "") {
+      $("#repeat_up_to").removeClass("hidden");
+    }
+  }
 });

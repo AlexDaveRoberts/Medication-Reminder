@@ -1,5 +1,5 @@
 class Reminder < ApplicationRecord
-  has_one :individual_reminder
+  has_one :individual_reminder, dependent: :delete
   validates :medication_name, presence: true
 
   def started?

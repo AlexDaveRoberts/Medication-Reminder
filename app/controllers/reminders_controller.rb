@@ -1,8 +1,9 @@
 class RemindersController < ApplicationController
-  before_action :set_reminder, only: [:show]
+  before_action :set_reminder, only: [:show, :edit, :update, :destroy]
 
   def new
     @reminder = Reminder.new
+    render "form"
   end
 
   def create
@@ -17,6 +18,26 @@ class RemindersController < ApplicationController
   end
 
   def show; end
+
+  def edit
+    render "form"
+  end
+
+  def update
+    if @reminder.update(reminder_params)
+      @reminder.update(repeat_until: params[:reminder][:repeat_until]) if @reminder.repeat != "None"
+      @individual_reminder = @reminder.individual_reminder.update(individual_reminder_params)
+      redirect_to @reminder
+    else
+      redirect_to edit_reminder_path(@reminder)
+    end
+  end
+
+  def destroy
+    if @reminder.destroy
+      redirect_to root_path
+    end
+  end
 
   def confirm
     individual_reminder = IndividualReminder.find(confirm_params[:individual_id])
