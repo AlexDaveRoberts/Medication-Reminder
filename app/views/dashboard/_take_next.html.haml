@@ -1,0 +1,8 @@
+.take_next
+  - if reminder.repeat == "Every day" && reminder.started?
+    - if reminder.individual_reminder.upcoming_reminder_today?
+      = "To take next: Today at #{reminder.individual_reminder.everyday_next_reminder}"
+    - else
+      = "To take next: Tomorrow at #{reminder.individual_reminder.everyday_reminders(sort = true).first}"
+  - else
+    = "To begin taking: #{reminder.start_date.strftime("%d %B")} at #{reminder.individual_reminder.everyday_reminders(sort = true).first}"

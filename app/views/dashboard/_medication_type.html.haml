@@ -1,0 +1,8 @@
+- if reminder.medication_type == "Drop"
+  = image_pack_tag "eye-drops.svg", title: "Eye drops", alt: "Eye drops icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+- elsif reminder.medication_type == "Injection"
+  = image_pack_tag "injection.svg", title: "Injection", alt: "Injection icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+- elsif reminder.medication_type == "Syrup"
+  = image_pack_tag "medicine.svg", title: "Syrup", alt: "Syrup icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"
+- elsif reminder.medication_type == "Tablet"
+  = image_pack_tag "pill.svg", title: "Tablets", alt: "Tablet icon made by <a href='https://www.flaticon.com/authors/smashicons' title='Smashicons'>Smashicons</a>", class: "card_icon"

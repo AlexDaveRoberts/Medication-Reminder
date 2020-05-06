@@ -1,0 +1,56 @@
+- row.each_with_index do |value, index|
+  - if index == 1
+    - date = DateTime.parse(value).strftime("%d %B %Y")
+    - filter_array = new_array.select{|key| key[:date] == date}
+    - all_dates << date if !all_dates.include?(date)
+    .row
+      .col-4
+        = DateTime.parse(value).strftime("%d %B %Y")
+      .col-2
+        - taken1_value = filter_array.select{|key| key[:taken_val] == "taken1"}
+        - if taken1_value.present?
+          = taken1_value[0][:time]
+          %i.fas.fa-check-circle
+        - elsif reminder.individual_reminder.time1.present?
+          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time1.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            Upcoming
+            %i.far.fa-circle
+          - else
+            Missed
+            %i.fas.fa-times-circle
+      .col-2
+        - taken2_value = filter_array.select{|key| key[:taken_val] == "taken2"}
+        - if taken2_value.present?
+          = taken2_value[0][:time]
+          %i.fas.fa-check-circle
+        - elsif reminder.individual_reminder.time2.present?
+          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time2.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            Upcoming
+            %i.far.fa-circle
+          - else
+            Missed
+            %i.fas.fa-times-circle
+      .col-2
+        - taken3_value = filter_array.select{|key| key[:taken_val] == "taken3"}
+        - if taken3_value.present?
+          = taken3_value[0][:time]
+          %i.fas.fa-check-circle
+        - elsif reminder.individual_reminder.time3.present?
+          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time3.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            Upcoming
+            %i.far.fa-circle
+          - else
+            Missed
+            %i.fas.fa-times-circle
+      .col-2
+        - taken4_value = filter_array.select{|key| key[:taken_val] == "taken4"}
+        - if taken4_value.present?
+          = taken4_value[0][:time]
+          %i.fas.fa-check-circle
+        - elsif reminder.individual_reminder.time4.present?
+          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time4.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+            Upcoming
+            %i.far.fa-circle
+          - else
+            Missed
+            %i.fas.fa-times-circle
