@@ -30,7 +30,7 @@
                 Reminders
             .col-5.text-right
               = link_to "Edit", edit_reminder_path(@reminder), class: "btn btn-primary"
-              = link_to "Delete", reminder_path(@reminder), method: "DELETE", class: "btn btn-primary"
+              = link_to "Delete", reminder_path(@reminder), method: "DELETE", class: "btn btn-primary", data: {confirm: "Are you sure you want to delete this medication reminder?"}
           .row.my-3
             .col-12
               - if @reminder.individual_reminder.dose1.present?

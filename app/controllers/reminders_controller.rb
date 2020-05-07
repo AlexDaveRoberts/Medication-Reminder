@@ -11,8 +11,10 @@ class RemindersController < ApplicationController
     if @reminder.save
       @reminder.update(repeat_until: params[:reminder][:repeat_until]) if @reminder.repeat != "None"
       @individual_reminder = @reminder.create_individual_reminder(individual_reminder_params)
+      flash[:success] = "This new medication reminder has been successfully created."
       redirect_to @reminder
     else
+      flash[:error] = "There was an error creating this medication reminder."
       redirect_to new_reminder_path
     end
   end
@@ -27,14 +29,17 @@ class RemindersController < ApplicationController
     if @reminder.update(reminder_params)
       @reminder.update(repeat_until: params[:reminder][:repeat_until]) if @reminder.repeat != "None"
       @individual_reminder = @reminder.individual_reminder.update(individual_reminder_params)
+      flash[:success] = "This medication reminder has been successfully updated."
       redirect_to @reminder
     else
+      flash[:error] = "There was an error updating this medication reminder."
       redirect_to edit_reminder_path(@reminder)
     end
   end
 
   def destroy
     if @reminder.destroy
+      flash[:success] = "This medication reminder has been successfully deleted."
       redirect_to root_path
     end
   end
