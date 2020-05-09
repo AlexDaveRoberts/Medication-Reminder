@@ -119,6 +119,14 @@ $(document).ready(function() {
         }
       }
     }
+
+    $.ajax({
+      method: "GET",
+      url: "/reload_header_info"
+    })
+    .done(function(data) {
+      $("#new_reminder").html(data);
+    });
   }, 60000);
 
   $('#reminder_modal').on('hidden.bs.modal', function () {

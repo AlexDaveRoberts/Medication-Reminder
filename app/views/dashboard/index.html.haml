@@ -1,22 +1,11 @@
+- current_date = DateTime.now + 1.hour
 = render partial: "reminder"
 %header.card
   .row
     .col-5.py-4
       %h1 My Reminders
     .col-7#new_reminder.my-3
-      .row.px-3.py-2
-        .col-12
-          Current time:
-          = DateTime.now.strftime("%d %b %Y, %H:%M")
-      - if @reminders.first.individual_reminder.upcoming_reminder_today?
-        .row.px-3.py-2
-          .col-12
-            Next reminder:
-            = "Today at #{@reminders.first.individual_reminder.everyday_next_reminder}"
-        .row.px-3.py-2
-          .col-12
-            - countdown = (@reminders.first.individual_reminder.everyday_next_reminder.to_i - DateTime.now.strftime("%H:%M").to_i)
-            = "Take next medication in #{distance_of_time_in_words(Time.parse(@reminders.first.individual_reminder.everyday_next_reminder), DateTime.now)}"
+      = render partial: "header_info", locals: { reminders: @reminders }
 .row#links
   .col-6.p-0.m-0.form-group
     = text_field_tag :search, nil, placeholder: "Search...", class: "form-control search_field", autocomplete: "off"
@@ -54,19 +43,19 @@
                     - time_available = false
                     - if reminder.repeat == "Every day"
                       - if reminder.individual_reminder.time1.present? && (reminder.num_of_times == 1 || 2 || 3 || 4)
-                        - if reminder.individual_reminder.taken1.nil? || Time.parse(reminder.individual_reminder.taken1.values.last).strftime("%d/%m/%Y") != DateTime.now.strftime("%d/%m/%Y")
+                        - if reminder.individual_reminder.taken1.nil? || Time.parse(reminder.individual_reminder.taken1.values.last).strftime("%d/%m/%Y") != current_date.strftime("%d/%m/%Y")
                           = button_tag "#{reminder.individual_reminder.time1.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 1}
                           - time_available = true
                       - if reminder.individual_reminder.time2.present? && (reminder.num_of_times == 2 || 3 || 4)
-                        - if reminder.individual_reminder.taken2.nil? || Time.parse(reminder.individual_reminder.taken2.values.last).strftime("%d/%m/%Y") != DateTime.now.strftime("%d/%m/%Y")
+                        - if reminder.individual_reminder.taken2.nil? || Time.parse(reminder.individual_reminder.taken2.values.last).strftime("%d/%m/%Y") != current_date.strftime("%d/%m/%Y")
                           = button_tag "#{reminder.individual_reminder.time2.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 2}
                           - time_available = true
                       - if reminder.individual_reminder.time3.present? && (reminder.num_of_times == 3 || 4)
-                        - if reminder.individual_reminder.taken3.nil? || Time.parse(reminder.individual_reminder.taken3.values.last).strftime("%d/%m/%Y") != DateTime.now.strftime("%d/%m/%Y")
+                        - if reminder.individual_reminder.taken3.nil? || Time.parse(reminder.individual_reminder.taken3.values.last).strftime("%d/%m/%Y") != current_date.strftime("%d/%m/%Y")
                           = button_tag "#{reminder.individual_reminder.time3.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 3}
                           - time_available = true
                       - if reminder.individual_reminder.time4.present? && (reminder.num_of_times == 4)
-                        - if reminder.individual_reminder.taken4.nil? || Time.parse(reminder.individual_reminder.taken4.values.last).strftime("%d/%m/%Y") != DateTime.now.strftime("%d/%m/%Y")
+                        - if reminder.individual_reminder.taken4.nil? || Time.parse(reminder.individual_reminder.taken4.values.last).strftime("%d/%m/%Y") != current_date.strftime("%d/%m/%Y")
                           = button_tag "#{reminder.individual_reminder.time4.strftime("%H:%M")}", class: "btn btn-success confirm_time", data: {individual_id: reminder.individual_reminder.id, time_num: 4}
                           - time_available = true
                       - if !time_available

@@ -36,4 +36,9 @@ class DashboardController < ApplicationController
     new_reminder_order = new_reminder_order.flatten
     @reminders = Reminder.find(new_reminder_order).sort_by{|a| new_reminder_order.index a.id}
   end
+
+  def reload_header_info
+    @reminders = index
+    render partial: "header_info", locals: { reminders: @reminders }
+  end
 end

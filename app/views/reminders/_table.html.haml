@@ -12,7 +12,7 @@
           %i.fas.fa-check-circle.green
           = taken1_value[0][:time]
         - elsif reminder.individual_reminder.time1.present?
-          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time1.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+          - if date == (DateTime.now + 1.hour).strftime("%d %B %Y") && reminder.individual_reminder.time1.strftime("%H:%M") > (DateTime.now + 1.hour).strftime("%H:%M")
             %i.far.fa-circle.grey
             Upcoming
           - else
@@ -24,7 +24,7 @@
           %i.fas.fa-check-circle.green
           = taken2_value[0][:time]
         - elsif reminder.individual_reminder.time2.present?
-          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time2.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+          - if date == (DateTime.now + 1.hour).strftime("%d %B %Y") && reminder.individual_reminder.time2.strftime("%H:%M") > (DateTime.now + 1.hour).strftime("%H:%M")
             %i.far.fa-circle.grey
             Upcoming
           - else
@@ -36,7 +36,7 @@
           %i.fas.fa-check-circle.green
           = taken3_value[0][:time]
         - elsif reminder.individual_reminder.time3.present?
-          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time3.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+          - if date == (DateTime.now + 1.hour).strftime("%d %B %Y") && reminder.individual_reminder.time3.strftime("%H:%M") > (DateTime.now + 1.hour).strftime("%H:%M")
             %i.far.fa-circle.grey
             Upcoming
           - else
@@ -48,7 +48,7 @@
           %i.fas.fa-check-circle.green
           = taken4_value[0][:time]
         - elsif reminder.individual_reminder.time4.present?
-          - if date == DateTime.now.strftime("%d %B %Y") && reminder.individual_reminder.time4.strftime("%H:%M") > DateTime.now.strftime("%H:%M")
+          - if date == (DateTime.now + 1.hour).strftime("%d %B %Y") && reminder.individual_reminder.time4.strftime("%H:%M") > (DateTime.now + 1.hour).strftime("%H:%M")
             %i.far.fa-circle.grey
             Upcoming
           - else

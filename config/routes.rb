@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :reminders
   post '/reminders/confirm', to: 'reminders#confirm'
+  get '/reload_header_info', to: 'dashboard#reload_header_info'
 end

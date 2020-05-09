@@ -11,7 +11,7 @@ class IndividualReminder < ApplicationRecord
       end
     end
     times.sort.each do |t|
-      return t if t > DateTime.now.strftime("%H:%M")
+      return t if t > (DateTime.now + 1.hour).strftime("%H:%M")
     end
   end
 
@@ -34,7 +34,7 @@ class IndividualReminder < ApplicationRecord
   def upcoming_reminder_today?
     upcoming = false
     everyday_reminders.each do |time|
-      upcoming = true if time > DateTime.now.strftime("%H:%M")
+      upcoming = true if time > (DateTime.now + 1.hour).strftime("%H:%M")
     end
     return upcoming
   end

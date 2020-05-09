@@ -49,33 +49,33 @@ class RemindersController < ApplicationController
     if confirm_params[:time_num] == "1"
       current_value = individual_reminder.taken1
       if current_value != nil
-        current_value = current_value.merge({"date_#{individual_reminder.taken1.keys.last.split(/\_/).last.to_i + 1}": DateTime.now})
+        current_value = current_value.merge({"date_#{individual_reminder.taken1.keys.last.split(/\_/).last.to_i + 1}": DateTime.now + 1.hour})
       else
-        current_value = {date_1: DateTime.now}
+        current_value = {date_1: DateTime.now + 1.hour}
       end
       individual_reminder.update(taken1: current_value)
     elsif confirm_params[:time_num] == "2"
       current_value = individual_reminder.taken2
       if current_value != nil
-        current_value = current_value.merge({"date_#{individual_reminder.taken2.keys.last.split(/\_/).last.to_i + 1}": DateTime.now})
+        current_value = current_value.merge({"date_#{individual_reminder.taken2.keys.last.split(/\_/).last.to_i + 1}": DateTime.now + 1.hour})
       else
-        current_value = {date_1: DateTime.now}
+        current_value = {date_1: DateTime.now + 1.hour}
       end
       individual_reminder.update(taken2: current_value)
     elsif confirm_params[:time_num] == "3"
       current_value = individual_reminder.taken3
       if current_value != nil
-        current_value = current_value.merge({"date_#{individual_reminder.taken3.keys.last.split(/\_/).last.to_i + 1}": DateTime.now})
+        current_value = current_value.merge({"date_#{individual_reminder.taken3.keys.last.split(/\_/).last.to_i + 1}": DateTime.now + 1.hour})
       else
-        current_value = {date_1: DateTime.now}
+        current_value = {date_1: DateTime.now + 1.hour}
       end
       individual_reminder.update(taken3: current_value)
     elsif confirm_params[:time_num] == "4"
       current_value = individual_reminder.taken4
       if current_value != nil
-        current_value = current_value.merge({"date_#{individual_reminder.taken4.keys.last.split(/\_/).last.to_i + 1}": DateTime.now})
+        current_value = current_value.merge({"date_#{individual_reminder.taken4.keys.last.split(/\_/).last.to_i + 1}": DateTime.now + 1.hour})
       else
-        current_value = {date_1: DateTime.now}
+        current_value = {date_1: DateTime.now + 1.hour}
       end
       individual_reminder.update(taken4: current_value)
     end

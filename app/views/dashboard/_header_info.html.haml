@@ -1,0 +1,13 @@
+.row.px-3.py-2
+  .col-12
+    Current time:
+    = (DateTime.now + 1.hour).strftime("%d %b %Y, %H:%M")
+- if reminders.first.individual_reminder.upcoming_reminder_today?
+  .row.px-3.py-2
+    .col-12
+      Next reminder:
+      = "Today at #{reminders.first.individual_reminder.everyday_next_reminder}"
+  .row.px-3.py-2
+    .col-12
+      - countdown = (reminders.first.individual_reminder.everyday_next_reminder.to_i - (DateTime.now + 1.hour).strftime("%H:%M").to_i)
+      = "Take next medication in #{distance_of_time_in_words(Time.parse(reminders.first.individual_reminder.everyday_next_reminder), (DateTime.now + 1.hour))}"
