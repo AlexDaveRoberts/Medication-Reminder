@@ -2,7 +2,7 @@
   .col-12
     Current time:
     = (DateTime.now + 1.hour).strftime("%d %b %Y, %H:%M")
-- if reminders.first.individual_reminder.upcoming_reminder_today?
+- if reminders.present? && reminders.first.individual_reminder.upcoming_reminder_today?
   .row.px-3.py-2
     .col-12
       Next reminder:

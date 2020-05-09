@@ -66,6 +66,7 @@ $(document).ready(function() {
   $("#num_of_times2").click(num_of_times2);
   $("#num_of_times3").click(num_of_times3);
   $("#num_of_times4").click(num_of_times4);
+  $("#num_of_times1").click();
 
   $(".confirm_time").click(function() {
     $.ajax({

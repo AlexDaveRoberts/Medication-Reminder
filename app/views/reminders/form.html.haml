@@ -34,7 +34,7 @@
             %input{id: "reminder_start_date", name: "reminder[start_date]", value: @reminder.start_date.present? ? @reminder.start_date.strftime("%d/%m/%Y") : nil, placeholder: "Choose a start date...", autocomplete: "off"}
           .col-11
             = form.label "Repeat:"
-            = form.select :repeat, ["None", "Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"], { default: "None" }, class: "form-control", autocomplete: "off"
+            = form.select :repeat, ["Every day", "Every week", "Every 2 weeks", "Every month", "Every 2 months", "Every year"], { default: "None" }, class: "form-control", autocomplete: "off"
           .col-11#repeat_up_to.hidden
             = form.label "Up to:"
             %input{id: "reminder_repeat_until", name: "reminder[repeat_until]", value: @reminder.repeat_until.present? ? @reminder.repeat_until.strftime("%d/%m/%Y") : nil, placeholder: "Choose a date to be reminded until...", autocomplete: "off"}
@@ -56,10 +56,10 @@
             Reminder 1:
           .col-5
             Dose:
-            = number_field_tag "individual_reminder[dose1]", @reminder.individual_reminder.present? && @reminder.individual_reminder.dose1.present? ? @reminder.individual_reminder.dose1 : nil, min: 1, step: 1, placeholder: "Num of doses...", class: "form-control", autocomplete: "off"
+            = number_field_tag "individual_reminder[dose1]", @reminder.individual_reminder.present? && @reminder.individual_reminder.dose1.present? ? @reminder.individual_reminder.dose1 : nil, min: 1, step: 1, placeholder: "Num of doses...", class: "form-control", autocomplete: "off", required: true
           .col-5
             Time:
-            %input{id: "reminder1_time", name: "individual_reminder[time1]", value: @reminder.individual_reminder.present? && @reminder.individual_reminder.time1.present? ? @reminder.individual_reminder.time1.strftime("%H:%M") : nil, placeholder: "When...", autocomplete: "off"}
+            %input{id: "reminder1_time", name: "individual_reminder[time1]", value: @reminder.individual_reminder.present? && @reminder.individual_reminder.time1.present? ? @reminder.individual_reminder.time1.strftime("%H:%M") : nil, placeholder: "When...", autocomplete: "off", required: true}
         .row.mt-3#reminder2.hidden
           .col-11
             Reminder 2:

@@ -20,9 +20,10 @@
             .col-12
               Started on:
               = @reminder.start_date.strftime("%d %B %Y")
-          .row.my-3
-            .col-12
-              = "Notes: #{@reminder.notes}"
+          - if @reminder.notes.present?
+            .row.my-3
+              .col-12
+                = "Notes: #{@reminder.notes}"
         .col-6
           .row
             .col-7
@@ -51,66 +52,71 @@
       .row.mt-4
         .col-12
           %h2.pb-3 Medication Reminder History
-          %strong.row.my-3
-            .col-4
-              Dates
-            .col-2
-              = @reminder.individual_reminder.time1.strftime("%H:%M") if @reminder.individual_reminder.time1.present?
-            .col-2
-              = @reminder.individual_reminder.time2.strftime("%H:%M") if @reminder.individual_reminder.time2.present?
-            .col-2
-              = @reminder.individual_reminder.time3.strftime("%H:%M") if @reminder.individual_reminder.time3.present?
-            .col-2
-              = @reminder.individual_reminder.time4.strftime("%H:%M") if @reminder.individual_reminder.time4.present?
-          %hr
-          - taken1 = @reminder.individual_reminder.taken1
-          - taken2 = @reminder.individual_reminder.taken2
-          - taken3 = @reminder.individual_reminder.taken3
-          - taken4 = @reminder.individual_reminder.taken4
-          - new_array = []
-          - if taken1 != nil
-            - taken1.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - new_array << {taken_val: "taken1", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
-          - if taken2 != nil
-            - taken2.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - new_array << {taken_val: "taken2", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
-          - if taken3 != nil
-            - taken3.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - new_array << {taken_val: "taken3", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
-          - if taken4 != nil
-            - taken4.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - new_array << {taken_val: "taken4", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
+          - if @reminder.individual_reminder.taken1.present? || @reminder.individual_reminder.taken2.present? ||  @reminder.individual_reminder.taken3.present? || @reminder.individual_reminder.taken4.present?
+            %strong.row.my-3
+              .col-4
+                Dates
+              .col-2
+                = @reminder.individual_reminder.time1.strftime("%H:%M") if @reminder.individual_reminder.time1.present?
+              .col-2
+                = @reminder.individual_reminder.time2.strftime("%H:%M") if @reminder.individual_reminder.time2.present?
+              .col-2
+                = @reminder.individual_reminder.time3.strftime("%H:%M") if @reminder.individual_reminder.time3.present?
+              .col-2
+                = @reminder.individual_reminder.time4.strftime("%H:%M") if @reminder.individual_reminder.time4.present?
+            %hr
+            - taken1 = @reminder.individual_reminder.taken1
+            - taken2 = @reminder.individual_reminder.taken2
+            - taken3 = @reminder.individual_reminder.taken3
+            - taken4 = @reminder.individual_reminder.taken4
+            - new_array = []
+            - if taken1 != nil
+              - taken1.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - new_array << {taken_val: "taken1", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
+            - if taken2 != nil
+              - taken2.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - new_array << {taken_val: "taken2", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
+            - if taken3 != nil
+              - taken3.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - new_array << {taken_val: "taken3", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
+            - if taken4 != nil
+              - taken4.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - new_array << {taken_val: "taken4", date: DateTime.parse(value).strftime("%d %B %Y"), time: DateTime.parse(value).strftime("%H:%M")}
 
-          - all_dates = []
-          - if taken1 != nil
-            - taken1.each do |row|
-              = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
+            - all_dates = []
+            - if taken1 != nil
+              - taken1.each do |row|
+                = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
 
-          - if taken2 != nil
-            - taken2.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
-                    = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
+            - if taken2 != nil
+              - taken2.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
+                      = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
 
-          - if taken3 != nil
-            - taken3.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
-                    = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
+            - if taken3 != nil
+              - taken3.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
+                      = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
 
-          - if taken4 != nil
-            - taken4.each do |row|
-              - row.each_with_index do |value, index|
-                - if index == 1
-                  - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
-                    = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
+            - if taken4 != nil
+              - taken4.each do |row|
+                - row.each_with_index do |value, index|
+                  - if index == 1
+                    - if !all_dates.include?(DateTime.parse(value).strftime("%d %B %Y"))
+                      = render partial: "table", locals: { row: row, new_array: new_array, reminder: @reminder, all_dates: all_dates }
+          - else
+            .row
+              .col-12
+                There is currently no history for this reminder.
